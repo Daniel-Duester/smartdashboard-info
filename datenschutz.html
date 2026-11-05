@@ -20,7 +20,7 @@
 <body>
 <main>
   <h1>Datenschutzerklärung</h1>
-  <p class="sub">SmartDashboard – Studienprojekt · Stand: 29.10.2026</p>
+  <p class="sub">SmartDashboard – Studienprojekt · Stand: 05.11.2026</p>
 
   <h2>1. Verantwortlich</h2>
   <p>Daniel Düster, Student der Hochschule Emden/Leer. Kontakt über
@@ -43,24 +43,47 @@
         Geräten des Verantwortlichen gespeichert.</li>
   </ul>
 
-  <h2>4. Speicherung und Weitergabe</h2>
+  <h2>4. Sprachsteuerung</h2>
   <ul>
-    <li>Die Daten werden ausschließlich auf den eigenen Geräten des Verantwortlichen (Laptop, Raspberry Pi)
-        verarbeitet und nur zur Anzeige verwendet.</li>
-    <li>Es findet <b>keine Weitergabe an Dritte</b>, kein Verkauf, keine Werbung und kein Tracking statt.</li>
-    <li>Die Nutzung und Übertragung von Informationen, die über Google-APIs empfangen werden, erfolgt gemäß der
-        <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>,
-        einschließlich der Anforderungen zur eingeschränkten Nutzung („Limited Use“).</li>
+    <li><b>Mikrofon und Schlüsselwort:</b> Das Mikrofon am Raspberry Pi wird dauerhaft lokal auf das
+        Schlüsselwort „Hey Jarvis“ ausgewertet. Vorher verlässt kein Ton das Gerät; es wird nichts aufgezeichnet
+        oder gespeichert.</li>
+    <li><b>Spracherkennung:</b> Erst nach dem Schlüsselwort wird der folgende Satz in Text umgewandelt –
+        derzeit vollständig lokal auf dem Raspberry Pi (Vosk). Die Tonaufnahme wird danach verworfen.</li>
+    <li><b>Auswertung des Befehls (Claude API):</b> Sobald die Sprachsteuerung im Einsatz ist, wird der
+        <b>erkannte Text</b> des Befehls zusammen mit dem aktuellen Datum und der Uhrzeit an die Claude API von
+        Anthropic (Anthropic PBC, USA) gesendet, um daraus einen Termin oder eine Aufgabe zu erkennen.
+        Es werden <b>keine Tonaufnahmen</b> und keine Kalenderinhalte übertragen. Laut Anthropic werden
+        API-Eingaben und -Ausgaben standardmäßig <b>nicht zum Training</b> verwendet und innerhalb von
+        <b>30 Tagen gelöscht</b> (Ausnahmen u. a. bei Verstößen gegen die Nutzungsrichtlinien), siehe
+        <a href="https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data">Anthropic Privacy Center</a>.</li>
+    <li>Das Ergebnis (z. B. „Termin morgen 15:00 Uhr Zahnarzt“) wird anschließend über die Google-Schnittstelle
+        im eigenen Kalender bzw. in der eigenen Aufgabenliste eingetragen.</li>
   </ul>
 
-  <h2>5. Widerruf</h2>
+  <h2>5. Speicherung und Weitergabe</h2>
+  <ul>
+    <li>Kalender- und Aufgabendaten werden ausschließlich auf den eigenen Geräten des Verantwortlichen
+        (Laptop, Raspberry Pi) verarbeitet und nur zur Anzeige und zum Eintragen verwendet.</li>
+    <li>Weitergegeben werden nur: der erkannte Text von Sprachbefehlen an Anthropic (siehe Abschnitt 4) und
+        die Koordinaten des eingestellten Wetter-Ortes an den Wetterdienst
+        <a href="https://open-meteo.com/">Open-Meteo</a>. Darüber hinaus findet <b>keine Weitergabe an Dritte</b>,
+        kein Verkauf, keine Werbung und kein Tracking statt.</li>
+    <li>Die Nutzung und Übertragung von Informationen, die über Google-APIs empfangen werden, erfolgt gemäß der
+        <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>,
+        einschließlich der Anforderungen zur eingeschränkten Nutzung („Limited Use“). Über Google-APIs
+        empfangene Daten werden nicht an Anthropic übertragen und nicht zum Training von KI-Modellen verwendet.</li>
+  </ul>
+
+  <h2>6. Widerruf</h2>
   <p>Der Zugriff der Anwendung auf das Google-Konto kann jederzeit unter
      <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a> widerrufen werden.
-     Lokal gespeicherte Token werden dann ungültig und gelöscht.</p>
+     Lokal gespeicherte Token werden dann ungültig und gelöscht. Die Sprachsteuerung lässt sich jederzeit
+     abschalten; dann wird das Mikrofon nicht mehr ausgewertet.</p>
 
-  <h2>6. Änderungen</h2>
-  <p>Wird die Anwendung erweitert (z. B. Auswertung von Sprachbefehlen), wird diese Erklärung
-     vorher aktualisiert.</p>
+  <h2>7. Änderungen</h2>
+  <p>Wird die Anwendung erweitert (z. B. Spracherkennung über einen Cloud-Dienst oder Übertragung weiterer
+     Daten an Anthropic), wird diese Erklärung vorher aktualisiert.</p>
 
   <footer><a href="index.html">← Zur Startseite</a></footer>
 </main>
