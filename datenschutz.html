@@ -64,21 +64,31 @@
         der Raspberry Pi selbst aus den angezeigten Daten – Kalender- und Aufgabeninhalte gehen dabei
         <b>nicht</b> an Anthropic. Allgemeine Wissensfragen beantwortet die Claude API; übertragen wird dafür nur
         der erkannte Text der Frage.</li>
-    <li>Die Antworten werden auf dem Raspberry Pi mit einer lokalen Sprachausgabe (Piper) vorgelesen.</li>
+    <li><b>Sprachausgabe:</b> Antworten werden mit der Stimme „Christoph“ von Microsoft Azure AI Speech
+        vorgelesen (Rechenzentrumsregion „Germany West Central“). Dafür wird
+        nur der <b>Text der Antwort</b> an Microsoft gesendet, z. B. die Bestätigung eines gerade gesprochenen
+        Befehls, eine Wetterauskunft oder die Antwort auf eine Wissensfrage. Es werden <b>keine Tonaufnahmen</b>
+        übertragen. Antworten, die Inhalte aus Google Kalender oder Google Tasks enthalten (z. B. „Was steht
+        morgen an?“ oder das Verschieben, Löschen und Abhaken bestehender Einträge), werden ausschließlich
+        <b>lokal</b> auf dem Raspberry Pi mit Piper vorgelesen und nicht an Microsoft übertragen. Ohne
+        Internetverbindung wird ebenfalls lokal vorgelesen. Informationen zur Datenverarbeitung:
+        <a href="https://privacy.microsoft.com/de-de/privacystatement">Microsoft-Datenschutzerklärung</a>.</li>
   </ul>
 
   <h2>5. Speicherung und Weitergabe</h2>
   <ul>
     <li>Kalender- und Aufgabendaten werden ausschließlich auf den eigenen Geräten des Verantwortlichen
         (Laptop, Raspberry Pi) verarbeitet und nur zur Anzeige und zum Eintragen verwendet.</li>
-    <li>Weitergegeben werden nur: der erkannte Text von Sprachbefehlen an Anthropic (siehe Abschnitt 4) und
+    <li>Weitergegeben werden nur: der erkannte Text von Sprachbefehlen an Anthropic, der Text gesprochener
+        Antworten ohne Google-Inhalte an Microsoft (siehe Abschnitt 4) und
         die Koordinaten des eingestellten Wetter-Ortes an den Wetterdienst
         <a href="https://open-meteo.com/">Open-Meteo</a>. Darüber hinaus findet <b>keine Weitergabe an Dritte</b>,
         kein Verkauf, keine Werbung und kein Tracking statt.</li>
     <li>Die Nutzung und Übertragung von Informationen, die über Google-APIs empfangen werden, erfolgt gemäß der
         <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>,
         einschließlich der Anforderungen zur eingeschränkten Nutzung („Limited Use“). Über Google-APIs
-        empfangene Daten werden nicht an Anthropic übertragen und nicht zum Training von KI-Modellen verwendet.</li>
+        empfangene Daten werden nicht an Anthropic oder Microsoft übertragen und nicht zum Training von
+        KI-Modellen verwendet.</li>
   </ul>
 
   <h2>6. Widerruf</h2>
