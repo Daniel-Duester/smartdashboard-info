@@ -20,7 +20,7 @@
 <body>
 <main>
   <h1>Datenschutzerklärung</h1>
-  <p class="sub">SmartDashboard – Studienprojekt · Stand: 05.11.2026</p>
+  <p class="sub">SmartDashboard – Studienprojekt · Stand: 10.11.2026</p>
 
   <h2>1. Verantwortlich</h2>
   <p>Daniel Düster, Student der Hochschule Emden/Leer. Kontakt über
@@ -52,13 +52,19 @@
         derzeit vollständig lokal auf dem Raspberry Pi (Vosk). Die Tonaufnahme wird danach verworfen.</li>
     <li><b>Auswertung des Befehls (Claude API):</b> Sobald die Sprachsteuerung im Einsatz ist, wird der
         <b>erkannte Text</b> des Befehls zusammen mit dem aktuellen Datum und der Uhrzeit an die Claude API von
-        Anthropic (Anthropic PBC, USA) gesendet, um daraus einen Termin oder eine Aufgabe zu erkennen.
+        Anthropic (Anthropic PBC, USA) gesendet, um daraus einen Termin oder eine Aufgabe zu erkennen bzw.
+        zu erkennen, wonach gefragt wird.
         Es werden <b>keine Tonaufnahmen</b> und keine Kalenderinhalte übertragen. Laut Anthropic werden
         API-Eingaben und -Ausgaben standardmäßig <b>nicht zum Training</b> verwendet und innerhalb von
         <b>30 Tagen gelöscht</b> (Ausnahmen u. a. bei Verstößen gegen die Nutzungsrichtlinien), siehe
         <a href="https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data">Anthropic Privacy Center</a>.</li>
     <li>Das Ergebnis (z. B. „Termin morgen 15:00 Uhr Zahnarzt“) wird anschließend über die Google-Schnittstelle
         im eigenen Kalender bzw. in der eigenen Aufgabenliste eingetragen.</li>
+    <li><b>Fragen:</b> Fragen nach Wetter, Terminen oder Aufgaben (z. B. „Was steht morgen an?“) beantwortet
+        der Raspberry Pi selbst aus den angezeigten Daten – Kalender- und Aufgabeninhalte gehen dabei
+        <b>nicht</b> an Anthropic. Allgemeine Wissensfragen beantwortet die Claude API; übertragen wird dafür nur
+        der erkannte Text der Frage.</li>
+    <li>Die Antworten werden auf dem Raspberry Pi mit einer lokalen Sprachausgabe (Piper) vorgelesen.</li>
   </ul>
 
   <h2>5. Speicherung und Weitergabe</h2>
