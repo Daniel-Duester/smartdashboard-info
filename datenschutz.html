@@ -20,7 +20,7 @@
 <body>
 <main>
   <h1>Datenschutzerklärung</h1>
-  <p class="sub">SmartDashboard – Studienprojekt · Stand: 10.11.2026</p>
+  <p class="sub">SmartDashboard – Studienprojekt · Stand: 19.11.2026</p>
 
   <h2>1. Verantwortlich</h2>
   <p>Daniel Düster, Student der Hochschule Emden/Leer. Kontakt über
@@ -34,11 +34,11 @@
   <h2>3. Welche Daten werden verarbeitet?</h2>
   <ul>
     <li><b>Google Kalender:</b> Termine (Titel, Datum, Uhrzeit) des eigenen Kontos werden gelesen und angezeigt.
-        Außerdem kann die Anwendung Termine anlegen und löschen – derzeit nur für automatische Tests in einem
-        eigenen Test-Kalender, später für Einträge per Sprachbefehl.</li>
-    <li><b>Google Tasks:</b> Aufgabenlisten und offene Aufgaben des eigenen Kontos werden gelesen und angezeigt.
-        Außerdem kann die Anwendung Aufgaben anlegen und löschen – derzeit nur für automatische Tests in einer
-        eigenen Test-Liste, später für Einträge per Sprachbefehl.</li>
+        Auf Befehl (per Sprache oder als Text vom eigenen Handy, siehe Abschnitte 4 und 5) legt die Anwendung
+        Termine an, verschiebt oder löscht sie. Für automatische Tests nutzt sie einen eigenen Test-Kalender.</li>
+    <li><b>Google Tasks:</b> Aufgabenlisten, offene Aufgaben und deren Fälligkeitsdatum werden gelesen und
+        angezeigt. Auf Befehl legt die Anwendung Aufgaben an oder hakt sie ab. Für automatische Tests nutzt sie
+        eine eigene Test-Liste.</li>
     <li><b>Anmelde-Token:</b> Die von Google ausgestellten Zugangsdaten werden nur lokal auf den eigenen
         Geräten des Verantwortlichen gespeichert.</li>
   </ul>
@@ -49,8 +49,8 @@
         Schlüsselwort „Hey Jarvis“ ausgewertet. Vorher verlässt kein Ton das Gerät; es wird nichts aufgezeichnet
         oder gespeichert.</li>
     <li><b>Spracherkennung:</b> Erst nach dem Schlüsselwort wird der folgende Satz in Text umgewandelt –
-        derzeit vollständig lokal auf dem Raspberry Pi (Vosk). Die Tonaufnahme wird danach verworfen.</li>
-    <li><b>Auswertung des Befehls (Claude API):</b> Sobald die Sprachsteuerung im Einsatz ist, wird der
+        vollständig lokal auf dem Raspberry Pi (Vosk). Die Tonaufnahme wird danach verworfen.</li>
+    <li><b>Auswertung des Befehls (Claude API):</b> Der
         <b>erkannte Text</b> des Befehls zusammen mit dem aktuellen Datum und der Uhrzeit an die Claude API von
         Anthropic (Anthropic PBC, USA) gesendet, um daraus einen Termin oder eine Aufgabe zu erkennen bzw.
         zu erkennen, wonach gefragt wird.
@@ -75,12 +75,35 @@
         <a href="https://privacy.microsoft.com/de-de/privacystatement">Microsoft-Datenschutzerklärung</a>.</li>
   </ul>
 
-  <h2>5. Speicherung und Weitergabe</h2>
+  <h2>5. Zugriff vom eigenen Handy</h2>
+  <ul>
+    <li><b>Verbindung (Tailscale):</b> Das Dashboard ist nicht öffentlich im Internet erreichbar. Unterwegs
+        greift nur das eigene Handy über ein privates Netz des Dienstes
+        <a href="https://tailscale.com/">Tailscale</a> darauf zu. Die Verbindung zwischen Handy und Raspberry Pi
+        ist Ende-zu-Ende verschlüsselt; Tailscale hat nach eigener Aussage keinen Zugriff auf die Inhalte
+        (Termine, Aufgaben, Befehle). Tailscale verarbeitet dafür Angaben zu den Geräten (z. B. Gerätename,
+        Betriebssystem, IP-Adresse, Zeitpunkt und Umfang der Verbindungen) sowie Name und E-Mail-Adresse des
+        Kontos des Verantwortlichen, siehe
+        <a href="https://tailscale.com/privacy-policy">Tailscale-Datenschutzerklärung</a>.</li>
+    <li><b>Zertifikat:</b> Für die verschlüsselte HTTPS-Verbindung wird ein Zertifikat ausgestellt. Dabei werden
+        der Gerätename („smartdash“) und der Name des privaten Netzes in öffentlichen Zertifikatsverzeichnissen
+        (Certificate Transparency) eingetragen. Darüber sind keine Inhalte erreichbar.</li>
+    <li><b>Handy-App:</b> Das Dashboard lässt sich auf dem Handy als App ablegen. Sie speichert die zuletzt
+        geladenen Termine, Aufgaben und Wetterdaten auf dem Handy, damit sie auch ohne Verbindung angezeigt
+        werden.</li>
+    <li><b>Befehle als Text:</b> Nach Anmeldung mit dem Passwort der Anwendung können vom Handy Befehle
+        eingetippt werden („Morgen 15 Uhr Zahnarzt eintragen“). Sie werden genau wie Sprachbefehle verarbeitet:
+        nur der Text des Befehls geht an die Claude API (Abschnitt 4), das Ergebnis wird über die
+        Google-Schnittstelle eingetragen. Es gibt dabei keine Sprachausgabe.</li>
+  </ul>
+
+  <h2>6. Speicherung und Weitergabe</h2>
   <ul>
     <li>Kalender- und Aufgabendaten werden ausschließlich auf den eigenen Geräten des Verantwortlichen
         (Laptop, Raspberry Pi) verarbeitet und nur zur Anzeige und zum Eintragen verwendet.</li>
     <li>Weitergegeben werden nur: der erkannte Text von Sprachbefehlen an Anthropic, der Text gesprochener
-        Antworten ohne Google-Inhalte an Microsoft (siehe Abschnitt 4) und
+        Antworten ohne Google-Inhalte an Microsoft (siehe Abschnitt 4), Geräte- und Verbindungsangaben ohne
+        Inhalte an Tailscale (siehe Abschnitt 5) und
         die Koordinaten des eingestellten Wetter-Ortes an den Wetterdienst
         <a href="https://open-meteo.com/">Open-Meteo</a>. Darüber hinaus findet <b>keine Weitergabe an Dritte</b>,
         kein Verkauf, keine Werbung und kein Tracking statt.</li>
@@ -91,13 +114,14 @@
         KI-Modellen verwendet.</li>
   </ul>
 
-  <h2>6. Widerruf</h2>
+  <h2>7. Widerruf</h2>
   <p>Der Zugriff der Anwendung auf das Google-Konto kann jederzeit unter
      <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a> widerrufen werden.
      Lokal gespeicherte Token werden dann ungültig und gelöscht. Die Sprachsteuerung lässt sich jederzeit
-     abschalten; dann wird das Mikrofon nicht mehr ausgewertet.</p>
+     abschalten; dann wird das Mikrofon nicht mehr ausgewertet. Der Zugriff vom Handy endet, sobald die Geräte
+     in Tailscale abgemeldet werden.</p>
 
-  <h2>7. Änderungen</h2>
+  <h2>8. Änderungen</h2>
   <p>Wird die Anwendung erweitert (z. B. Spracherkennung über einen Cloud-Dienst oder Übertragung weiterer
      Daten an Anthropic), wird diese Erklärung vorher aktualisiert.</p>
 
